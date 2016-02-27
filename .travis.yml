@@ -1,0 +1,19 @@
+language: node_js
+node_js: stable
+
+env:
+  global:
+    - secure: "Y8SAhVtbd5wmhRCUgWvM5z2ynEbbu2DwIzrVnajAGvoqrpO07kjmxZrDqqhPfNRwDjckgiiq2ovqOdSfrZFUrrFyQx+E9sufvCDlinIyeKKIIRFavgu30h6bPN3hQjIIRCodFiG7P2ShYJ/Hfnu2tpyF7ho2e76n40OQRd82JjaWFLLzlkFWM4pKzS1yGIKhf42SVMhgK2Q7fUHvLtSPW4zOu1Aoad2ACyEXwPlgQqyirPy1XCLFW9vb6LEa6o1fVAXuGxmrxdqXK3ZX/dozY0gXsfcMU67o0MEhixnXWM4rn9qDK5wB1GemC07gT+vxhoyVZO8k5AHSLTlI4AoRYUaHXp8TkhgD3ZcsYgwGbFceOo1hhRPCB6CqamAmRsz8QuSi/xxwJHm3KiKWjxKPbHz61xOhB9IGAagGiCQVIH1G5tenIP40yulJy38SxJzQGnXsSFYDdCfq9ll+jxNxTqJkEiFg2tU/krQubwSECjLla0erTazpQI2tcpPTVIzURMlD9miv7uDrvO8hnUakC1dwUilB+BLbiEcS17dHC3TANY4jyfZVhB4tL2YTIg+9h8SjTN4yp/YXWANfU0FCnhnG/2OJFrp8Hu9F+s0hEcS8ZSEO2im4LWxcd9rhfCvD1tvGO84tpYLhjJgH8hY8LofOGARLv+x1YNo+jCt/cds="
+
+install:
+  - npm install -g yo generator-hubot hubot-telegram
+
+script:
+  - mkdir deploy
+  - cd deploy
+  - yo hubot --owner="Leo Arias <yo@elopio.net>" --name="eljaqueado_bot" --description="El bot del jáquerespeis" --adapter=telegram --defaults
+
+after_success:
+  - cd ..
+  - chmod 755 ./.push_heroku_deploy.sh
+  - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && ./.push_heroku_deploy.sh
