@@ -10,11 +10,18 @@ env:
 
 install:
   - npm install -g yo generator-hubot hubot-telegram
+  # scripts
+  - npm install --save hubot-tweeter
+  # helpers
+  - sudo apt-get install jq
 
 script:
   - mkdir deploy
   - cd deploy
   - yo hubot --owner="Leo Arias <yo@elopio.net>" --name="eljaqueado_bot" --description="El bot del jáquerespeis" --adapter=telegram --defaults
+  # scripts
+  - external_scripts=$(jq '. + ["hubot-tweeter"]' <<< external-scripts.json
+  - echo $external_scripts > external-scripts.json
 
 after_success:
   - cd ..
