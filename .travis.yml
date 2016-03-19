@@ -10,8 +10,8 @@ env:
 
 install:
   - npm install -g yo generator-hubot
-  # scripts
-  - npm install -g hubot-proxy hubot-telegram
+  # adapter
+  - npm install -g hubot-telegram
   # helpers
   - sudo apt-get install jq
 
@@ -20,7 +20,7 @@ script:
   - cd deploy
   - yo hubot --owner="Leo Arias <yo@elopio.net>" --name="eljaqueado_bot" --description="El bot del jáquerespeis" --adapter=telegram --defaults
   # scripts
-  - npm install --save hubot-tweeter
+  - npm install --save hubot-tweeter hubot-proxy
   - external_scripts=$(jq '. + ["hubot-tweeter", "hubot-proxy"]' < external-scripts.json)
   - echo $external_scripts > external-scripts.json
   # copy the proxy
