@@ -24,7 +24,5 @@ module.exports = (robot) ->
     else
       # We're done
       robot.logger.debug 'Received message from non-whitelisted room: ' + room
-      robot.logger.debug 'Whitelist: ' + whitelist
-      robot.logger.debug room.toString() == process.env.HUBOT_ROOM_WHITELIST
       context.response.message.finish()
       done()
