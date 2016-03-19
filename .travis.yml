@@ -19,10 +19,14 @@ script:
   - mkdir deploy
   - cd deploy
   - yo hubot --owner="Leo Arias <yo@elopio.net>" --name="eljaqueado_bot" --description="El bot del jáquerespeis" --adapter=telegram --defaults
-  # scripts
+  # external scripts
   - npm install --save hubot-tweeter
   - external_scripts=$(jq '. + ["hubot-tweeter"]' < external-scripts.json)
   - echo $external_scripts > external-scripts.json
+  # local scripts
+  # dependencies
+  - npm install --save hoek
+  - cp ../scripts/* scripts/
 
 after_success:
   - cd ..
