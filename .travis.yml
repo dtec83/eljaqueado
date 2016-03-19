@@ -9,7 +9,9 @@ env:
     - secure: "fUoYXY5CaPxwhdyn//ddSKCSR6uQTSGeNhZicIo0F0fyXOENHp6R30YO4ENAmzcM32F17Y1/GLgriY14GRHqnQXt2iBImpktFNhhdozcTDg9f4KcM2c4AeAgg3tb7f/S8K0KudvcVeVQWhKloYv89bYFM1QSF7cYp0qdj2HsaDn6bx+M7NCcwwrOq+9YNqoJmga3KpuNctQTYbNdGwK1FkWrcvpdi7hjJrTFLEQzTrcpOLwoki5AhOMdEz8kiNFRJkeBlS9LvTJ/+jqSbH9V39qtZSB5mGqgSRH7gfb6SRqSCRg1qqWgB0XJ6A2S3cJNXXEyvQQ5I4UMP0tEIYDqgGC7lU0Vi72ZuuwhNJlqtkWWp3dcd68vm4rA6CXFfPQPd8RVpM+GTPGVHFHcBiiKzlWNudCSNndKuEObNFC8EoSZHmACzGAy1ufU1+ooY7MkeQAYOdHJtrlwefpeDizGm8JviuZhPGDfIrmqRFF1FfQFH5bjSQSJZiEhYu8gBZEbY7F3452dHlwnsVFdij4d/iGuWDLpGweaD2TkEy0A0J0EW5aWsHTl9yNq9kMKhe/nWJ3Mm4Cjp4Ao+XJlH1ajytyJsuYZuK3zKVq7SfXNtoqvEso865pgW9ZxmYWrHb6azgVLIE/dGuPo0RQHfgJD8PLfgjAg89xyO77jUpvhEXI="
 
 install:
-  - npm install -g yo generator-hubot hubot-telegram
+  - npm install -g yo generator-hubot
+  # scripts
+  - npm install -g hubot-proxy hubot-telegram
   # helpers
   - sudo apt-get install jq
 
@@ -19,8 +21,10 @@ script:
   - yo hubot --owner="Leo Arias <yo@elopio.net>" --name="eljaqueado_bot" --description="El bot del jáquerespeis" --adapter=telegram --defaults
   # scripts
   - npm install --save hubot-tweeter
-  - external_scripts=$(jq '. + ["hubot-tweeter"]' < external-scripts.json)
+  - external_scripts=$(jq '. + ["hubot-tweeter", "hubot-proxy"]' < external-scripts.json)
   - echo $external_scripts > external-scripts.json
+  # copy the proxy
+  - cp ../adapter-proxy-config.coffee .
 
 after_success:
   - cd ..
