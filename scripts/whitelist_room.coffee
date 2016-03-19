@@ -18,13 +18,13 @@ module.exports = (robot) ->
   robot.receiveMiddleware (context, next, done) ->
     # Unless the room is in the whitelist
     room = context.response.message.room
-    if room in whitelist
+    if room.toString() in whitelist
       robot.logger.debug 'Received message from whitelisted room.'
       next(done)
     else
       # We're done
       robot.logger.debug 'Received message from non-whitelisted room: ' + room
       robot.logger.debug 'Whitelist: ' + whitelist
-      robot.logger.debug room == process.env.HUBOT_ROOM_WHITELIST
+      robot.logger.debug room.toString() == process.env.HUBOT_ROOM_WHITELIST
       context.response.message.finish()
       done()
