@@ -1,7 +1,6 @@
 # Configuration:
 #   HUBOT_ROOM_WHITELIST
 
-reach = require('hoek').reach
 path = require('path')
 
 module.exports = (robot) ->
@@ -18,7 +17,7 @@ module.exports = (robot) ->
 
   robot.receiveMiddleware (context, next, done) ->
     # Unless the room is in the whitelist
-    room = reach(context, 'response.message.room')
+    room = context.response.message.room
     unless room in whitelist
       # We're done
       robot.logger.debug 'Received message from non-whitelisted room: ' + room

@@ -24,8 +24,6 @@ script:
   - external_scripts=$(jq '. + ["hubot-tweeter"]' < external-scripts.json)
   - echo $external_scripts > external-scripts.json
   # local scripts
-  # dependencies
-  - npm install --save hoek
   - cp ../scripts/* scripts/
 
 after_success:
