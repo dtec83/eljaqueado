@@ -20,8 +20,8 @@ script:
   - cd deploy
   - yo hubot --owner="Leo Arias <yo@elopio.net>" --name="eljaqueado_bot" --description="El bot del jáquerespeis" --adapter=telegram --defaults
   # scripts
-  - npm install --save hubot-tweeter hubot-proxy
-  - external_scripts=$(jq '. + ["hubot-tweeter", "hubot-proxy"]' < external-scripts.json)
+  - npm install --save hubot-tweeter
+  - external_scripts=$(jq '. + ["hubot-tweeter"]' < external-scripts.json)
   - echo $external_scripts > external-scripts.json
 
 after_success:
