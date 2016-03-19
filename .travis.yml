@@ -23,8 +23,6 @@ script:
   - npm install --save hubot-tweeter hubot-proxy
   - external_scripts=$(jq '. + ["hubot-tweeter", "hubot-proxy"]' < external-scripts.json)
   - echo $external_scripts > external-scripts.json
-  # copy the proxy
-  - cp ../adapter-proxy-config.coffee .
 
 after_success:
   - cd ..
