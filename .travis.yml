@@ -11,7 +11,7 @@ env:
 install:
   - npm install -g yo generator-hubot
   # adapter
-  - npm install -g hubot-telegram
+  - npm install -g git+https://git@github.com/lukefx/hubot-telegram.git#edited_message
   # helpers
   - sudo apt-get install jq
 
