@@ -21,7 +21,7 @@ script:
   - yo hubot --owner="Leo Arias <yo@elopio.net>" --name="eljaqueado_bot" --description="El bot del jáquerespeis" --adapter=telegram --defaults
   # external scripts
   - npm install --save hubot-plusplus hubot-redis-brain hubot-tweeter
-  - external_scripts=$(jq '. + ["hubot-plusplus", ""hubot-redis-brain", "hubot-tweeter"]' < external-scripts.json)
+  - external_scripts=$(jq '. + ["hubot-plusplus", "hubot-redis-brain", "hubot-tweeter"]' < external-scripts.json)
   - echo $external_scripts > external-scripts.json
   # local scripts
   - cp ../scripts/* scripts/
