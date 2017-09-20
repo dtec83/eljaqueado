@@ -4,7 +4,7 @@ language: node_js
 node_js: stable
 
 install:
-  - npm install -g yo generator-hubot
+  - npm install -g yo git@github.com/hubotio/generator-hubot#v1.0.0
   # adapter
   - npm install -g hubot-telegram
   # helpers
